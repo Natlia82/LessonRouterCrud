@@ -1,40 +1,26 @@
-import React from 'react';
+import React , { useState, useEffect, useRef } from 'react';
+import { Routes, Route, NavLink, Navigate, useSearchParams } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-
+import useJsonFetch from '../hooks/useJsonFetch';
 
 function HomePage() {
-const rez =[];
-(async () => {
-  // POST request using fetch with async/await
- 
-  const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({content: 'Новый контент'  })
-  };
-  const response = await fetch('http://localhost:7070/posts');
-  const data = await response.json();
-  rez = data;
-  console.log(rez);
-})();
-    console.log(rez)
+  const [{data, err, flag}] = useJsonFetch("http://localhost:7070/posts");
+  
     return (
+     
       <div>
-            {rez.map(o => 
-                <h>gggg</h>
-                
-                )}
-
-            <div className='kart'>
-            <Card style={{ width: '450px' }}>
+            <NavLink className="knopa" to="/posts/new">Создать пост</NavLink>
+             {flag? <h1>"идет загрузка..."</h1>: data.map((m) => 
+             <div className='kart' key={m.id}>
+             <Card style={{ width: '450px' }}>
                 <Card.Body>
                   <Card.Title>Ilnaz Cilyazov</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Основатель группы</Card.Subtitle>
                 <Card.Text>
-                  Пост1
+                    {m.content}
                 </Card.Text>
                 <Card.Link href="#">Нравиться</Card.Link>
                 <Card.Link href="#">Комментировать</Card.Link>
@@ -51,7 +37,7 @@ const rez =[];
                 </div>
             </Card>
             </div>
-
+         ) }
      
     
       </div>
