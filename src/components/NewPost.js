@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Routes, Route, NavLink, Navigate, useNavigate, useSearchParams } from "react-router-dom";
-
+import UseJsonPost from "../hooks/useJsonPost";
 
 function NewPost() {
   const [form, setForm] = useState({
@@ -14,7 +14,8 @@ function NewPost() {
       }
       const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log(form.content);        
+       // console.log(form.content);  
+        UseJsonPost("http://localhost:7070/posts", form.content);      
         setForm({content: ""});
         navigate(`/`);
    };
