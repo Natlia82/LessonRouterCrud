@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import { Routes, Route, NavLink, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import UseJsonPost from "../hooks/useJsonPost";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 
 function NewPost() {
   const [form, setForm] = useState({
@@ -20,12 +23,30 @@ function NewPost() {
         navigate(`/`);
    };
     return ( 
-      <form onSubmit={handleSubmit}>
-                                   
-            <input type="text" name="content" value={form.content} onChange={handleFormChange} />
-                        
-            <button className="spanLi"  >ОК</button>
-        </form>
+      <Form className='newForm' onSubmit={handleSubmit} >
+            <Nav >
+              <Nav.Item>
+                    <Nav.Link href="#">Публикация</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                  <Nav.Link eventKey="#">Фтот/видео</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                  <Nav.Link eventKey="#">Прямой Эфир</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                  <Nav.Link eventKey="#" disabled>ещё</Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <Form.Group className="mb-3" >
+                    <Form.Label>Введите тект поста</Form.Label>
+                    <Form.Control placeholder="Текст поста" name="content" value={form.content} onChange={handleFormChange}/>
+            </Form.Group>  
+            <Button variant="primary" type="submit">
+                   Опубликовать
+            </Button>
+         
+        </Form>
     )
 }
 
