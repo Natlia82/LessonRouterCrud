@@ -8,7 +8,8 @@ import CloseButton from 'react-bootstrap/CloseButton';
 
 function NewPost() {
   const [form, setForm] = useState({
-    content: ""
+    content: "",
+    id: 0,
 });
 
       const navigate = useNavigate();
@@ -19,11 +20,11 @@ function NewPost() {
       const handleSubmit = (evt) => {
         evt.preventDefault();
        // console.log(form.content);  
-        UseJsonPost("http://localhost:7070/posts", form.content);      
+        UseJsonPost("http://localhost:7070/posts", form);      
         setForm({content: ""});
         navigate(`/`);
         };
-        
+
         const clouseSubmit = (evt) => {
          // evt.preventDefault();
            navigate(`/`);

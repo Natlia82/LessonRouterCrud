@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 function useJsonPost(url, textC, met = 'POST') {
-
+    console.log(textC);
     const fethNews = async() => {
         try {
 
@@ -10,9 +10,7 @@ function useJsonPost(url, textC, met = 'POST') {
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify({
-                    content: textC
-                })
+                body: JSON.stringify(textC)
             });
 
         } catch (e) {

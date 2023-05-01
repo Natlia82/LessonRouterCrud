@@ -10,7 +10,10 @@ import UseJsonPost from "../hooks/useJsonPost";
 
 function ViewingPost() {
         const [update, setUpdate] = useState(0);
-
+        const [form, setForm] = useState({
+          content: "",
+          id: 0
+      });
         
        
 
@@ -27,10 +30,16 @@ function ViewingPost() {
         
          const handleSubmit = (evt) => {
           evt.preventDefault();
+          UseJsonPost(`http://localhost:7070/posts/${prodId}`, form, 'PUT');      
+         
          }
          
          const handleChange = (evt) => {
-
+          const {name, value} = evt.target;
+            setForm({
+              content: value,
+              id: data.post.id,
+          })
          }
 
           return  (
@@ -50,7 +59,7 @@ function ViewingPost() {
                       <Card.Link href="#">Комментировать</Card.Link>
                   </Card.Body>
                   <div>
-                    <Button onClick={() => setUpdate(1)} >Изменить</Button>
+                    <Button onClick={() => {setUpdate(1); setForm({content: data.post.content, id: data.post.id,}) }} >Изменить</Button>
                     <Button onClick={onDeleteSubmit} >Удалить</Button>
                   </div>  
                 </Card>
@@ -61,7 +70,7 @@ function ViewingPost() {
             <CloseButton onClick={() => setUpdate(0)}  />
             <Form  onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
-                        <Form.Control placeholder="Текст поста" name="content" value={data.post.content} onChange={handleChange}/>
+                        <Form.Control placeholder="Текст поста" name="content" value={form.content} onChange={handleChange}/>
                  </Form.Group>  
                  <Button variant="primary" type="submit">
                         Сохранить
