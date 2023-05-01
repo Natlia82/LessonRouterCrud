@@ -4,6 +4,7 @@ import UseJsonPost from "../hooks/useJsonPost";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 function NewPost() {
   const [form, setForm] = useState({
@@ -21,9 +22,17 @@ function NewPost() {
         UseJsonPost("http://localhost:7070/posts", form.content);      
         setForm({content: ""});
         navigate(`/`);
-   };
+        };
+        const clouseSubmit = (evt) => {
+         // evt.preventDefault();
+           navigate(`/`);
+        }
+
     return ( 
-      <Form className='newForm' onSubmit={handleSubmit} >
+      <div className='newForm'>
+       <CloseButton onClick={clouseSubmit}  />
+       <Form  onSubmit={handleSubmit} >
+      
             <Nav >
               <Nav.Item>
                     <Nav.Link href="#">Публикация</Nav.Link>
@@ -47,6 +56,7 @@ function NewPost() {
             </Button>
          
         </Form>
+        </div>
     )
 }
 

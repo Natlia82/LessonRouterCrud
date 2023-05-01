@@ -1,5 +1,5 @@
 import React , { useState, useEffect, useRef } from 'react';
-import { Routes, Route, NavLink, Navigate, useSearchParams } from "react-router-dom";
+import { Routes, Route, NavLink, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -8,18 +8,25 @@ import useJsonFetch from '../hooks/useJsonFetch';
 
 function HomePage() {
   const [{data, err, flag}] = useJsonFetch("http://localhost:7070/posts");
+  const navigate = useNavigate();  
   
+  const postClick = (evt) => {
+      console.log(evt.target);
+      const id = evt.target.getAttribute("id");
+      navigate(`/posts/${id}`);
+    }  
+
     return (
      
       <div>
             <NavLink className="knopa" to="/posts/new">Создать пост</NavLink>
              {flag? <h1>"идет загрузка..."</h1>: data.map((m) => 
-             <div className='kart' key={m.id}>
+             <div className='kart' key={m.id} >
              <Card style={{ width: '450px' }}>
                 <Card.Body>
                   <Card.Title>Ilnaz Cilyazov</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Основатель группы</Card.Subtitle>
-                <Card.Text>
+                <Card.Text id={m.id} onClick={postClick} >
                     {m.content}
                 </Card.Text>
                 <Card.Link href="#">Нравиться</Card.Link>

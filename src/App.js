@@ -4,7 +4,7 @@ import { Routes, Route, NavLink, Navigate, useSearchParams } from "react-router-
 import HomePage from './components/HomePage';
 import NewPost from './components/NewPost';
 import ForzaPage from './components/ForzaPage';
-import TimeAttackPage from './components/TimeAttackPage';
+import ViewingPost from './components/ViewingPost';
 import Menu from './components/Menu';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,7 +15,7 @@ function App() {
        <Routes>
            <Route path='/' element={<HomePage />} />
            <Route path='/posts/new' element={<NewPost />} />
-           <Route path='/timeattack' element={<TimeAttackPage />} />
+           <Route path='/posts/:id' element={<ViewingPost />} />
            <Route path='/forza' element={<ForzaPage />} />
            
        </Routes>
