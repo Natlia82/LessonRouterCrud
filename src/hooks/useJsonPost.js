@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function useJsonPost(url, textC) {
-    // const [m, setM] = useState(null);
+function useJsonPost(url, textC, met = 'POST') {
 
-    // const [flag, setFlag] = useState(null);
-    //useEffect(() => {
     const fethNews = async() => {
         try {
-            //  setFlag(true);
+
             let response = await fetch(url, {
-                method: 'POST',
+                method: met,
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
@@ -17,19 +14,18 @@ function useJsonPost(url, textC) {
                     content: textC
                 })
             });
-            //  setErr(null);
+
         } catch (e) {
-            //  setErr(e);
+
         } finally {
-            // setFlag(false);
+
         }
 
 
 
     }
     fethNews();
-    // console.log(flag)
-    //return [{ err, flag }];
+
 
 }
 

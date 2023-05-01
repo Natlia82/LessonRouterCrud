@@ -23,6 +23,7 @@ function NewPost() {
         setForm({content: ""});
         navigate(`/`);
         };
+        
         const clouseSubmit = (evt) => {
          // evt.preventDefault();
            navigate(`/`);
