@@ -23,6 +23,8 @@ function NewPost() {
         UseJsonPost("http://localhost:7070/posts", form);      
         setForm({content: ""});
         navigate(`/`);
+        navigate(0);
+       
         };
 
         const clouseSubmit = (evt) => {

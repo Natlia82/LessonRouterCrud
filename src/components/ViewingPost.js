@@ -26,11 +26,14 @@ function ViewingPost() {
           evt.preventDefault();
           UseJsonPost(`http://localhost:7070/posts/${prodId}`, {}, 'DELETE');      
           navigate(`/`);
+          navigate(0);
          };    
         
          const handleSubmit = (evt) => {
           evt.preventDefault();
-          UseJsonPost(`http://localhost:7070/posts/${prodId}`, form, 'PUT');      
+          UseJsonPost(`http://localhost:7070/posts/${prodId}`, form, 'PUT'); 
+           
+          navigate(0);    
          
          }
          
