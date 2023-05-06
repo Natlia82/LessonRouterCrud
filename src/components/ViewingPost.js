@@ -32,7 +32,6 @@ function ViewingPost() {
          const handleSubmit = (evt) => {
           evt.preventDefault();
           UseJsonPost(`http://localhost:7070/posts/${prodId}`, form, 'PUT'); 
-           
           navigate(0);    
          
          }
@@ -52,6 +51,7 @@ function ViewingPost() {
                {!flag & 'post' in data ?
                
                 <Card style={{ width: '450px' }}>
+                  <CloseButton onClick={() => { navigate(`/`);}}   />
                   <Card.Body>
                       <Card.Title>Ilnaz Cilyazov</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">Основатель группы</Card.Subtitle>
